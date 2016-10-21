@@ -9,7 +9,6 @@ private:
 	ShaderManager shaderManager;
 
 	void clearScreen();
-	void useShaderProgram();
 
 public:
 	Renderer();

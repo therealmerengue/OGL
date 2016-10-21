@@ -1,5 +1,8 @@
 #pragma once
 #include <GL\glew.h>
+#include <glm\glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include <string>
 
@@ -10,9 +13,14 @@ public:
 	~ShaderManager();
 
 	GLuint getProgramID() { return programID; }
+	void useProgram() { glUseProgram(programID); }
+	
+	friend class Renderer;
 
 private:
 	GLuint vertexShaderID, fragmentShaderID, programID;
+	glm::mat4 view, projection, model; //shader uniforms
+	GLint modelLocation, viewLocation, projectionLocation; //uniform locations
 
 	std::string getShaderSource(std::string path);
 	bool checkShaderCompilationResult(GLuint shaderID);

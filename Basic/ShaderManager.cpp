@@ -10,6 +10,18 @@ ShaderManager::ShaderManager(std::string vertexShaderPath, std::string fragmentS
 	fragmentShaderID = createAndCompileShader(GL_FRAGMENT_SHADER, fragmentShaderPath.c_str());
 
 	createShaderProgram();
+
+	modelLocation = glGetUniformLocation(programID, "model");
+	viewLocation = glGetUniformLocation(programID, "view");
+	projectionLocation = glGetUniformLocation(programID, "projection");
+
+	useProgram();
+
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+	projection = glm::perspective(45.0f, (GLfloat)800 / (GLfloat)600, 0.1f, 100.0f);
+
+	glUniformMatrix4fv(viewLocation, 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(projectionLocation, 1, GL_FALSE, glm::value_ptr(projection));
 }
 
 ShaderManager::~ShaderManager()
