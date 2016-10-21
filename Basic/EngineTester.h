@@ -1,5 +1,5 @@
 #pragma once
-#include "ShaderPair.h"
+#include "ShaderManager.h"
 #include "Renderer.h"
 #include "ModelFactory.h"
 #include "RawModel.h"
@@ -20,7 +20,7 @@ private:
 	int height = 600;
 	const char* title = "GAME";
 	GLFWwindow* window;
-	ShaderPair* shaderPair;
+	ShaderManager* shaderPair;
 	Renderer renderer;
 	ModelFactory modelFactory;
 	RawModel* model;

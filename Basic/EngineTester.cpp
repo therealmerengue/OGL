@@ -10,7 +10,7 @@ EngineTester::EngineTester()
 		0.0f,  0.5f, 0.0f  // Top   
 	};
 	initWindow();
-	shaderPair = new ShaderPair("vertexShader.vs", "fragmentShader.frag");
+	shaderPair = new ShaderManager("vertexShader.vs", "fragmentShader.frag");
 	model = modelFactory.createModel(vertices);
 }
 

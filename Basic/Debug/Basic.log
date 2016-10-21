@@ -1,7 +1,8 @@
 ﻿  EngineTester.cpp
+  ShaderManager.cpp
   Generating Code...
-  Skipping... (no relevant changes detected)
-  ModelFactory.cpp
+  Compiling...
   Main.cpp
+  Generating Code...
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.exe
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.pdb (Partial PDB)

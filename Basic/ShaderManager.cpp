@@ -1,10 +1,10 @@
-#include "ShaderPair.h"
+#include "ShaderManager.h"
 
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
-ShaderPair::ShaderPair(std::string vertexShaderPath, std::string fragmentShaderPath)
+ShaderManager::ShaderManager(std::string vertexShaderPath, std::string fragmentShaderPath)
 {
 	vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
 	std::string vShaderSource = getShaderSource(vertexShaderPath);
@@ -19,11 +19,11 @@ ShaderPair::ShaderPair(std::string vertexShaderPath, std::string fragmentShaderP
 	createShaderProgram();
 }
 
-ShaderPair::~ShaderPair()
+ShaderManager::~ShaderManager()
 {
 }
 
-std::string ShaderPair::getShaderSource(std::string path)
+std::string ShaderManager::getShaderSource(std::string path)
 {
 	std::ifstream shaderFile(path);
 	std::stringstream buffer;
@@ -33,7 +33,7 @@ std::string ShaderPair::getShaderSource(std::string path)
 	return s;
 }
 
-bool ShaderPair::checkShaderCompilationResult(GLuint shaderID)
+bool ShaderManager::checkShaderCompilationResult(GLuint shaderID)
 {
 	GLint success;
 	GLchar infoLog[512];
@@ -47,7 +47,7 @@ bool ShaderPair::checkShaderCompilationResult(GLuint shaderID)
 	return true;
 }
 
-bool ShaderPair::checkProgramLinkResult(GLuint programID)
+bool ShaderManager::checkProgramLinkResult(GLuint programID)
 {
 	GLint success;
 	GLchar infoLog[512];
@@ -64,7 +64,7 @@ bool ShaderPair::checkProgramLinkResult(GLuint programID)
 	return true;
 }
 
-void ShaderPair::compileShader(GLuint shaderID, const GLchar* shaderSource)
+void ShaderManager::compileShader(GLuint shaderID, const GLchar* shaderSource)
 {
 	if (shaderSource != "")
 	{
@@ -77,7 +77,7 @@ void ShaderPair::compileShader(GLuint shaderID, const GLchar* shaderSource)
 		throw std::exception("Unable to get shader source");
 }
 
-void ShaderPair::createShaderProgram()
+void ShaderManager::createShaderProgram()
 {
 	programID = glCreateProgram();
 	glAttachShader(programID, vertexShaderID);

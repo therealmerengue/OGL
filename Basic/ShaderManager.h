@@ -3,11 +3,11 @@
 
 #include <string>
 
-class ShaderPair
+class ShaderManager
 {
 public:
-	ShaderPair(std::string vertexShaderPath, std::string fragmentShaderPath);
-	~ShaderPair();
+	ShaderManager(std::string vertexShaderPath, std::string fragmentShaderPath);
+	~ShaderManager();
 
 	GLuint getProgramID() { return programID; }
 
