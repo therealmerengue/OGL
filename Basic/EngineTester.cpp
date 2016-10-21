@@ -5,7 +5,7 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelFactory.createModel<GLfloat, 9>(vertices);
+	model = modelFactory.createModel<GLfloat, 9>(vertices, vertexColors);
 	renderer = new Renderer();
 }
 
@@ -52,7 +52,6 @@ void EngineTester::gameLoop()
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-		renderer->clearScreen();
 		renderer->render(model->getVaoID());
 		glfwSwapBuffers(window);
 	}

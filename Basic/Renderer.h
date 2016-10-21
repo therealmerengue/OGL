@@ -8,11 +8,13 @@ class Renderer
 private:
 	ShaderManager shaderManager;
 
+	void clearScreen();
+	void useShaderProgram();
+
 public:
 	Renderer();
 	~Renderer();
 
-	void clearScreen();
 	void render(GLuint vaoID);
 };
 

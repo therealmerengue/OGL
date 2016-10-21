@@ -29,6 +29,11 @@ private:
 		0.5f, -0.5f, 0.0f, // Right 
 		0.0f,  0.5f, 0.0f  // Top   
 	};
+	std::array<GLfloat, 9> vertexColors = {
+		1.0f, 0.0f, 0.0f,  // Left
+		0.0f, 1.0f, 0.0f,  // Right
+		0.0f, 0.0f, 1.0f   // Top 
+	};
 
 	void initWindow();
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
