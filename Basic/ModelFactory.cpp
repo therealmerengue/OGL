@@ -9,8 +9,8 @@ ModelFactory::~ModelFactory()
 	for (size_t i = 0; i < vaos.size(); i++)
 		glDeleteVertexArrays(1, &vaos[i]);
 
-	for (size_t i = 0; i < vbos.size(); i++)
-		glDeleteBuffers(1, &vbos[i]);
+	for (size_t i = 0; i < vbosAndEbos.size(); i++)
+		glDeleteBuffers(1, &vbosAndEbos[i]);
 }
 
 GLuint ModelFactory::createAndBindVAO()
