@@ -5,7 +5,7 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelFactory.createModel(vertices);
+	model = modelFactory.createModel<GLfloat, 9>(vertices);
 	renderer = new Renderer();
 }
 

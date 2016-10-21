@@ -6,15 +6,8 @@
 
 ShaderManager::ShaderManager(std::string vertexShaderPath, std::string fragmentShaderPath)
 {
-	vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-	std::string vShaderSource = getShaderSource(vertexShaderPath);
-	vertexShaderSource = vShaderSource.c_str();
-	compileShader(vertexShaderID, vertexShaderSource);
-
-	fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
-	std::string fShaderSource = getShaderSource(fragmentShaderPath);
-	fragmentShaderSource = fShaderSource.c_str();
-	compileShader(fragmentShaderID, fragmentShaderSource);
+	vertexShaderID = createAndCompileShader(GL_VERTEX_SHADER, vertexShaderPath.c_str());
+	fragmentShaderID = createAndCompileShader(GL_FRAGMENT_SHADER, fragmentShaderPath.c_str());
 
 	createShaderProgram();
 }
@@ -75,6 +68,14 @@ void ShaderManager::compileShader(GLuint shaderID, const GLchar* shaderSource)
 	}
 	else
 		throw std::exception("Unable to get shader source");
+}
+
+int ShaderManager::createAndCompileShader(GLenum shaderType, const GLchar* shaderPath)
+{
+	int shaderID = glCreateShader(shaderType);
+	std::string shaderSource = getShaderSource(shaderPath);
+	compileShader(shaderID, shaderSource.c_str());
+	return shaderID;
 }
 
 void ShaderManager::createShaderProgram()

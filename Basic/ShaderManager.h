@@ -13,13 +13,12 @@ public:
 
 private:
 	GLuint vertexShaderID, fragmentShaderID, programID;
-	const GLchar* vertexShaderSource;
-	const GLchar* fragmentShaderSource;
 
 	std::string getShaderSource(std::string path);
 	bool checkShaderCompilationResult(GLuint shaderID);
 	bool checkProgramLinkResult(GLuint programID);
 	void compileShader(GLuint shaderID, const GLchar* shaderSource);
+	int createAndCompileShader(GLenum shaderType, const GLchar* shaderSource);
 	void createShaderProgram();
 };
 
