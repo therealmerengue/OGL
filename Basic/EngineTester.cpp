@@ -12,6 +12,7 @@ EngineTester::EngineTester()
 EngineTester::~EngineTester()
 {
 	delete model;
+	delete renderer;
 	glfwTerminate();
 }
 
