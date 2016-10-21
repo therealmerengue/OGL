@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-Renderer::Renderer()
+Renderer::Renderer() : shaderManager("vertexShader.vs", "fragmentShader.frag")
 {
 }
 
@@ -14,9 +14,9 @@ void Renderer::clearScreen()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer::render(GLuint vaoID, GLuint shaderProgramID)
+void Renderer::render(GLuint vaoID)
 {
-	glUseProgram(shaderProgramID);
+	glUseProgram(shaderManager.getProgramID());
 	glBindVertexArray(vaoID);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	glBindVertexArray(0);

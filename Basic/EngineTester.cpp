@@ -4,20 +4,14 @@
 
 EngineTester::EngineTester()
 {
-	std::array<GLfloat, 9> vertices = {
-		-0.5f, -0.5f, 0.0f, // Left  
-		0.5f, -0.5f, 0.0f, // Right 
-		0.0f,  0.5f, 0.0f  // Top   
-	};
 	initWindow();
-	shaderPair = new ShaderManager("vertexShader.vs", "fragmentShader.frag");
 	model = modelFactory.createModel(vertices);
+	renderer = new Renderer();
 }
 
 EngineTester::~EngineTester()
 {
 	delete model;
-	delete shaderPair;
 	glfwTerminate();
 }
 
@@ -57,8 +51,8 @@ void EngineTester::gameLoop()
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-		renderer.clearScreen();
-		renderer.render(model->getVaoID(), shaderPair->getProgramID());
+		renderer->clearScreen();
+		renderer->render(model->getVaoID());
 		glfwSwapBuffers(window);
 	}
 }
