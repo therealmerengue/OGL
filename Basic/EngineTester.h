@@ -43,5 +43,6 @@ private:
 
 	void initWindow();
 	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
+	static std::array<GLboolean, 512> keyStates;
 };
 

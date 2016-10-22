@@ -52,7 +52,7 @@ void EngineTester::gameLoop()
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-		renderer->render(model->getVaoID());
+		renderer->render(*model);
 		glfwSwapBuffers(window);
 	}
 }
@@ -61,4 +61,10 @@ void EngineTester::keyCallback(GLFWwindow* window, int key, int scancode, int ac
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GL_TRUE);
+	else if (action == GLFW_PRESS)
+		keyStates[key] = GL_TRUE;
+	else if (action == GLFW_RELEASE)
+		keyStates[key] = GL_FALSE;
 }
+
+std::array<GLboolean, 512> EngineTester::keyStates = { GL_FALSE };

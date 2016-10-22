@@ -1,5 +1,6 @@
 #pragma once
 #include "ShaderManager.h"
+#include "RawModel.h"
 
 #include <GL\glew.h>
 
@@ -14,6 +15,6 @@ public:
 	Renderer();
 	~Renderer();
 
-	void render(GLuint vaoID);
+	void render(RawModel& model);
 };
 

@@ -1,6 +1,6 @@
 #include "RawModel.h"
 
-RawModel::RawModel(int vaoID)
+RawModel::RawModel(int vaoID) : size(1, 1, 0), position(0, 0, 0), rotationAxis(0, 1, -1), rotationAngle(20.0f)
 {
 	this->vaoID = vaoID;
 }
