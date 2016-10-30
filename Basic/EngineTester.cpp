@@ -5,7 +5,7 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelFactory.createModel<GLfloat, 12, 6>(vertices, vertexColors, indices);
+	model = modelFactory.createModel<GLfloat, 72, 36>(vertices3D, colors3D, indices3D);
 	renderer = new Renderer();
 }
 
@@ -45,6 +45,7 @@ void EngineTester::initWindow()
 	}
 
 	glViewport(0, 0, width, height);
+	glEnable(GL_DEPTH_TEST);
 }
 
 void EngineTester::gameLoop()
@@ -54,6 +55,7 @@ void EngineTester::gameLoop()
 		glfwPollEvents();
 		renderer->render(*model);
 		model->rotate(0.02f);
+		model->move(0.0f, 0.0f, -0.01f);
 		glfwSwapBuffers(window);
 	}
 }

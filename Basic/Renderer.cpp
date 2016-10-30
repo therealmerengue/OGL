@@ -19,8 +19,8 @@ void Renderer::render(const RawModel& model)
 {
 	clearScreen();
 	shaderManager.useProgram();
-	glm::mat4 mod;
-	shaderManager.modelMatrix = mod;
+	glm::mat4 modMatrix;
+	shaderManager.modelMatrix = modMatrix;
 	shaderManager.modelMatrix = glm::translate(shaderManager.modelMatrix, model.position);
 	shaderManager.modelMatrix = glm::translate(shaderManager.modelMatrix, glm::vec3(0.5f * model.size.x, 0.5f * model.size.y, 0.5f * model.size.z));
 	shaderManager.modelMatrix = glm::rotate(shaderManager.modelMatrix, model.rotationAngle, model.rotationAxis);
@@ -30,6 +30,6 @@ void Renderer::render(const RawModel& model)
 	glUniformMatrix4fv(shaderManager.modelMatLocation, 1, GL_FALSE, glm::value_ptr(shaderManager.modelMatrix));
 	glBindVertexArray(model.vaoID);
 	//glDrawArrays(GL_TRIANGLES, 0, 3);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }

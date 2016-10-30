@@ -12,7 +12,8 @@ public:
 
 	int getVaoID() { return vaoID; }
 
-	void rotate(GLfloat angle);
+	void rotate(GLfloat angle) { rotationAngle += angle; }
+	void move(GLfloat dx, GLfloat dy, GLfloat dz) { position += glm::vec3(dx, dy, dz); }
 
 	friend class Renderer;
 

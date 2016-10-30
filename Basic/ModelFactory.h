@@ -14,7 +14,7 @@ public:
 	template<typename T, std::size_t VERTICES_SIZE> RawModel* createModel(const std::array<T, VERTICES_SIZE>& vertices)
 	{
 		int vaoID = createAndBindVAO();
-		storeDataInAttributeList<GLfloat, 9>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
+		storeDataInAttributeList<GLfloat, VERTICES_SIZE>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
 		unbindVAO();
 		return new RawModel(vaoID);
 	}
@@ -23,9 +23,9 @@ public:
 	RawModel* createModel(const std::array<T, VERTICES_SIZE>& vertices, const std::array<T, VERTICES_SIZE>& vertexColors, const std::array<GLuint, INDICES_SIZE>& indices)
 	{
 		int vaoID = createAndBindVAO();
-		storeDataInAttributeList<GLfloat, 12>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
-		storeDataInAttributeList<GLfloat, 12>(GL_ARRAY_BUFFER, 1, 3, GL_FLOAT, 3, 0, vertexColors);
-		storeVertexIndices<6>(indices);
+		storeDataInAttributeList<GLfloat, VERTICES_SIZE>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
+		storeDataInAttributeList<GLfloat, VERTICES_SIZE>(GL_ARRAY_BUFFER, 1, 3, GL_FLOAT, 3, 0, vertexColors);
+		storeVertexIndices<INDICES_SIZE>(indices);
 		unbindVAO();
 		return new RawModel(vaoID);
 	}
