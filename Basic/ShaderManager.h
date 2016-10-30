@@ -20,7 +20,7 @@ public:
 private:
 	GLuint vertexShaderID, fragmentShaderID, programID;
 	glm::mat4 viewMatrix, projectionMatrix, modelMatrix; //shader uniforms
-	GLint modelLocation, viewLocation, projectionLocation; //uniform locations
+	GLint modelMatLocation, viewMatLocation, projectionMatLocation; //uniform locations
 
 	std::string getShaderSource(std::string path);
 	bool checkShaderCompilationResult(GLuint shaderID);

@@ -53,6 +53,7 @@ void EngineTester::gameLoop()
 	{
 		glfwPollEvents();
 		renderer->render(*model);
+		model->rotate(0.02f);
 		glfwSwapBuffers(window);
 	}
 }

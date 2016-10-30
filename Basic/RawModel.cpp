@@ -8,3 +8,8 @@ RawModel::RawModel(int vaoID) : size(1, 1, 0), position(0, 0, 0), rotationAxis(0
 RawModel::~RawModel()
 {
 }
+
+void RawModel::rotate(GLfloat angle)
+{
+	rotationAngle += angle;
+}

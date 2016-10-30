@@ -15,6 +15,6 @@ public:
 	Renderer();
 	~Renderer();
 
-	void render(RawModel& model);
+	void render(const RawModel& model);
 };
 

@@ -12,6 +12,8 @@ public:
 
 	int getVaoID() { return vaoID; }
 
+	void rotate(GLfloat angle);
+
 	friend class Renderer;
 
 private:
