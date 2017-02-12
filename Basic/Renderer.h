@@ -14,6 +14,24 @@ public:
 	~Renderer();
 
 	void clearScreen();
-	void render(const RawModel& model, int numOfElements);
+
+	template<size_t COORDINATES_SIZE, size_t INDICES_SIZE> 
+	void render(const RawModel<COORDINATES_SIZE, INDICES_SIZE>& model)
+	{
+		shaderManager.useProgram();
+		glm::mat4 modMatrix;
+		shaderManager.modelMatrix = modMatrix;
+		shaderManager.modelMatrix = glm::translate(shaderManager.modelMatrix, model.coordinates.position);
+		shaderManager.modelMatrix = glm::translate(shaderManager.modelMatrix, glm::vec3(0.5f * model.coordinates.size.x, 0.5f * model.coordinates.size.y, 0.5f * model.coordinates.size.z));
+		shaderManager.modelMatrix = glm::rotate(shaderManager.modelMatrix, model.coordinates.rotationAngle, model.coordinates.rotationAxis);
+		shaderManager.modelMatrix = glm::translate(shaderManager.modelMatrix, glm::vec3(-0.5f * model.coordinates.size.x, -0.5f * model.coordinates.size.y, -0.5f * model.coordinates.size.z));
+		shaderManager.modelMatrix = glm::scale(shaderManager.modelMatrix, model.coordinates.size);
+
+		glUniformMatrix4fv(shaderManager.modelMatLocation, 1, GL_FALSE, glm::value_ptr(shaderManager.modelMatrix));
+		glBindVertexArray(model.vaoID);
+		//glDrawArrays(GL_TRIANGLES, 0, 3);
+		glDrawElements(GL_TRIANGLES, INDICES_SIZE, GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+	}
 };
 

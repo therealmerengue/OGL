@@ -12,28 +12,23 @@ public:
 	ModelFactory();
 	~ModelFactory();
 
-	template<std::size_t VERTICES_SIZE> RawModel* createModel(const std::array<GLfloat, VERTICES_SIZE>& vertices, Coordinates coordinates)
-	{
-		int vaoID = createAndBindVAO();
-		storeDataInAttributeList<GLfloat, VERTICES_SIZE>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
-		unbindVAO();
-		return new RawModel(vaoID, coordinates);
-	}
-
-	template<std::size_t VERTICES_SIZE, std::size_t INDICES_SIZE>
-	RawModel* createModel(const std::array<GLfloat, VERTICES_SIZE>& vertices, const std::array<GLfloat, VERTICES_SIZE>& vertexColors, const std::array<GLuint, INDICES_SIZE>& indices,
+	template<std::size_t COORDINATES_SIZE, std::size_t INDICES_SIZE>
+	RawModel<COORDINATES_SIZE, INDICES_SIZE>* createModel(const std::array<GLfloat, COORDINATES_SIZE>& vertices,
+		const std::array<GLfloat, COORDINATES_SIZE>& vertexColors, 
+		const std::array<GLuint, INDICES_SIZE>& indices, 
 		Coordinates coordinates)
 	{
 		int vaoID = createAndBindVAO();
-		storeDataInAttributeList<VERTICES_SIZE>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
-		storeDataInAttributeList<VERTICES_SIZE>(GL_ARRAY_BUFFER, 1, 3, GL_FLOAT, 3, 0, vertexColors);
+		storeDataInAttributeList<COORDINATES_SIZE>(GL_ARRAY_BUFFER, 0, 3, GL_FLOAT, 3, 0, vertices);
+		storeDataInAttributeList<COORDINATES_SIZE>(GL_ARRAY_BUFFER, 1, 3, GL_FLOAT, 3, 0, vertexColors);
 		storeVertexIndices<INDICES_SIZE>(indices);
 		unbindVAO();
-		return new RawModel(vaoID, coordinates);
+		return new RawModel<COORDINATES_SIZE, INDICES_SIZE>(vaoID, coordinates, vertices, vertexColors, indices);
 	}
 
 	template<std::size_t SIZE> 
-	void storeDataInAttributeList(GLenum bufferType, int attributeNumber, int coordinateSize, GLenum type, int stride, int offset, const std::array<GLfloat, SIZE>& data)
+	void storeDataInAttributeList(GLenum bufferType, int attributeNumber, int coordinateSize, GLenum type, int stride, int offset, 
+		const std::array<GLfloat, SIZE>& data)
 	{
 		GLuint vboID;
 		vbosAndEbos.push_back(vboID);

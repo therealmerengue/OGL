@@ -5,10 +5,10 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelFactory.createModel<72, 36>(vertices3D, colors3D, indices3D,
+	model = modelFactory.createModel(vertices3D, colors3D, indices3D,
 		Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
-	model2 = modelFactory.createModel<12, 6>(vertices2D, vertexColors2D, indices2D,
-		Coordinates(glm::vec3(0.5f, 0.5f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
+	model2 = modelFactory.createModel(vertices2D, vertexColors2D, indices2D,
+		Coordinates(glm::vec3(1.0f, 1.2f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
 	renderer = new Renderer();
 }
 
@@ -58,10 +58,10 @@ void EngineTester::gameLoop()
 	{
 		glfwPollEvents();
 		renderer->clearScreen();
-		renderer->render(*model, 36);
-		renderer->render(*model2, 6);
-		/*model->rotate(0.02f);
-		model->move(0.0f, 0.0f, -0.01f);*/
+		renderer->render(*model);
+		renderer->render(*model2);
+		model->rotate(0.002f);
+		//model->move(0.0f, 0.0f, -0.01f);
 		glfwSwapBuffers(window);
 	}
 }
