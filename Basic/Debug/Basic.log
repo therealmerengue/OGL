@@ -1,9 +1,3 @@
-﻿  EngineTester.cpp
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  Renderer.cpp
-  RawModel.cpp
-  ModelFactory.cpp
-  Main.cpp
+﻿  RawModel.cpp
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.exe
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.pdb (Partial PDB)

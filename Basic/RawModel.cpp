@@ -1,8 +1,7 @@
 #include "RawModel.h"
 
-RawModel::RawModel(int vaoID, Coordinates coordinates) : coordinates(coordinates)
+RawModel::RawModel(int vaoID, Coordinates coordinates) : vaoID(vaoID), coordinates(coordinates)
 {
-	this->vaoID = vaoID;
 }
 
 RawModel::~RawModel()
