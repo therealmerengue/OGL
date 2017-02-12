@@ -5,13 +5,17 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelFactory.createModel<GLfloat, 72, 36>(vertices3D, colors3D, indices3D);
+	model = modelFactory.createModel<GLfloat, 72, 36>(vertices3D, colors3D, indices3D,
+		Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
+	model2 = modelFactory.createModel<GLfloat, 12, 6>(vertices2D, vertexColors2D, indices2D,
+		Coordinates(glm::vec3(0.5f, 0.5f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
 	renderer = new Renderer();
 }
 
 EngineTester::~EngineTester()
 {
 	delete model;
+	delete model2;
 	delete renderer;
 	glfwTerminate();
 }
@@ -53,9 +57,11 @@ void EngineTester::gameLoop()
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
-		renderer->render(*model);
-		model->rotate(0.02f);
-		model->move(0.0f, 0.0f, -0.01f);
+		renderer->clearScreen();
+		renderer->render(*model, 36);
+		renderer->render(*model2, 6);
+		/*model->rotate(0.02f);
+		model->move(0.0f, 0.0f, -0.01f);*/
 		glfwSwapBuffers(window);
 	}
 }

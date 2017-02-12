@@ -130,6 +130,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Coordinates.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModelFactory.cpp" />
     <ClCompile Include="RawModel.cpp" />
@@ -138,6 +139,7 @@
     <ClCompile Include="EngineTester.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Coordinates.h" />
     <ClInclude Include="ModelFactory.h" />
     <ClInclude Include="RawModel.h" />
     <ClInclude Include="Renderer.h" />

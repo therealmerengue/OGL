@@ -23,6 +23,7 @@ private:
 	Renderer* renderer;
 	ModelFactory modelFactory;
 	RawModel* model;
+	RawModel* model2;
 
 	std::array<GLfloat, 12> vertices2D = {
 		0.5f,  0.5f, 0.0f, 

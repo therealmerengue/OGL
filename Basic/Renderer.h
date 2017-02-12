@@ -9,12 +9,11 @@ class Renderer
 private:
 	ShaderManager shaderManager;
 
-	void clearScreen();
-
 public:
 	Renderer();
 	~Renderer();
 
-	void render(const RawModel& model);
+	void clearScreen();
+	void render(const RawModel& model, int numOfElements);
 };
 
