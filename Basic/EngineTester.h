@@ -1,11 +1,15 @@
 #pragma once
 #include "ShaderManager.h"
 #include "Renderer.h"
-#include "ModelFactory.h"
+#include "ModelBuilder.h"
 #include "RawModel.h"
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
+
+#include <array>
+#include <vector>
+#include <memory>
 
 class EngineTester
 {
@@ -21,28 +25,28 @@ private:
 	const char* title = "GAME";
 	GLFWwindow* window;
 	Renderer* renderer;
-	ModelFactory modelFactory;
-	RawModel<72, 36>* model;
-	RawModel<12, 6>* model2;
+	ModelBuilder modelBuilder;
+	std::unique_ptr<RawModel> model;
+	std::unique_ptr<RawModel> model2;
 
-	std::array<GLfloat, 12> vertices2D = {
+	std::vector<GLfloat> vertices2D = {
 		0.5f,  0.5f, 0.0f, 
 		0.5f, -0.5f, 0.0f, 
 		-0.5f, -0.5f, 0.0f,  
 		-0.5f,  0.5f, 0.0f,
 	};
-	std::array<GLfloat, 12> vertexColors2D = {
+	std::vector<GLfloat> vertexColors2D = {
 		1.0f, 0.0f, 0.0f,  // Left
 		0.0f, 1.0f, 0.0f,  // Right
 		0.0f, 0.0f, 1.0f,
 		0.0f, 0.0f, 1.0f,
 	};
-	std::array<GLuint, 6> indices2D = {  // Note that we start from 0!
+	std::vector<GLuint> indices2D = {  // Note that we start from 0!
 		0, 1, 3, // First Triangle
 		1, 2, 3  // Second Triangle
 	};
 
-	std::array<GLfloat, 72> vertices3D = {
+	std::vector<GLfloat> vertices3D = {
 		-0.5f,0.5f,0,
 		-0.5f,-0.5f,0,
 		0.5f,-0.5f,0,
@@ -73,7 +77,7 @@ private:
 		0.5f,-0.5f,0,
 		0.5f,-0.5f,1
 	};
-	std::array<GLfloat, 72> colors3D = {
+	std::vector<GLfloat> colors3D = {
 		1.0f, 0.0f, 0.0f, 
 		0.0f, 1.0f, 0.0f, 
 		0.0f, 0.0f, 1.0f,
@@ -99,7 +103,7 @@ private:
 		0.0f, 1.0f, 0.0f,
 		0.0f, 0.0f, 1.0f,
 	};
-	std::array<GLuint, 36> indices3D = {
+	std::vector<GLuint> indices3D = {
 		0,1,3,
 		3,1,2,
 		4,5,7,

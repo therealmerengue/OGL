@@ -5,17 +5,23 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelFactory.createModel(vertices3D, colors3D, indices3D,
-		Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
-	model2 = modelFactory.createModel(vertices2D, vertexColors2D, indices2D,
-		Coordinates(glm::vec3(1.0f, 1.2f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f));
+	model = modelBuilder.InitBuild()
+		->Coords(Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f))
+		->Vertices(vertices3D)
+		->VertexColors(colors3D)
+		->Indices(indices3D)
+		->Result();
+	model2 = modelBuilder.InitBuild()
+		->Coords(Coordinates(glm::vec3(1.0f, 1.2f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f))
+		->Vertices(vertices2D)
+		->VertexColors(vertexColors2D)
+		->Indices(indices2D)
+		->Result();
 	renderer = new Renderer();
 }
 
 EngineTester::~EngineTester()
 {
-	delete model;
-	delete model2;
 	delete renderer;
 	glfwTerminate();
 }
