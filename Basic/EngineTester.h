@@ -2,7 +2,7 @@
 #include "ShaderManager.h"
 #include "Renderer.h"
 #include "ModelBuilder.h"
-#include "RawModel.h"
+#include "Model.h"
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
@@ -25,9 +25,11 @@ private:
 	const char* title = "GAME";
 	GLFWwindow* window;
 	Renderer* renderer;
+	Renderer* texRenderer;
 	ModelBuilder modelBuilder;
-	std::unique_ptr<RawModel> model;
-	std::unique_ptr<RawModel> model2;
+	std::unique_ptr<Model> model3D;
+	std::unique_ptr<Model> model2D;
+	std::unique_ptr<Model> texModel;
 
 	std::vector<GLfloat> vertices2D = {
 		0.5f,  0.5f, 0.0f, 
@@ -116,6 +118,12 @@ private:
 		19,17,18,
 		20,21,23,
 		23,21,22
+	};
+	std::vector<GLfloat> textureCoords = {
+		0.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 1.0f,
+		1.0f, 0.0f
 	};
 
 	void initWindow();

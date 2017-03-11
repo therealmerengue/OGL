@@ -5,24 +5,34 @@
 EngineTester::EngineTester()
 {
 	initWindow();
-	model = modelBuilder.InitBuild()
+	model3D = modelBuilder.InitBuild()
 		->Coords(Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f))
 		->Vertices(vertices3D)
 		->VertexColors(colors3D)
 		->Indices(indices3D)
 		->Result();
-	model2 = modelBuilder.InitBuild()
+	model2D = modelBuilder.InitBuild()
 		->Coords(Coordinates(glm::vec3(1.0f, 1.2f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f))
 		->Vertices(vertices2D)
 		->VertexColors(vertexColors2D)
 		->Indices(indices2D)
 		->Result();
-	renderer = new Renderer();
+	texModel = modelBuilder.InitBuild()
+		->Coords(Coordinates(glm::vec3(0.5f, 0.5f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 0.0f))
+		->Vertices(vertices2D)
+		->TextureCoords(textureCoords)
+		->Tex(Texture("textures/blue.png"))
+		->Color(glm::vec3(1.0f))
+		->Indices(indices2D)
+		->Result();
+	renderer = new Renderer("vertexShader.vs", "fragmentShader.frag");
+	texRenderer = new Renderer("texVertexShader.vs", "texFragmentShader.frag");
 }
 
 EngineTester::~EngineTester()
 {
 	delete renderer;
+	delete texRenderer;
 	glfwTerminate();
 }
 
@@ -54,6 +64,9 @@ void EngineTester::initWindow()
 		return;
 	}
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 	glViewport(0, 0, width, height);
 	glEnable(GL_DEPTH_TEST);
 }
@@ -64,9 +77,10 @@ void EngineTester::gameLoop()
 	{
 		glfwPollEvents();
 		renderer->clearScreen();
-		renderer->render(*model);
-		renderer->render(*model2);
-		model->rotate(0.002f);
+		renderer->render(*model3D);
+		renderer->render(*model2D);
+		texRenderer->renderTexture(*texModel);
+		model3D->rotate(0.002f);
 		//model->move(0.0f, 0.0f, -0.01f);
 		glfwSwapBuffers(window);
 	}

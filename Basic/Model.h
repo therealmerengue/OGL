@@ -1,17 +1,16 @@
 #pragma once
 #include "Coordinates.h"
+#include "Texture.h"
 
 #include <GL\glew.h>
 #include <glm\glm.hpp>
 #include <vector>
 
-class RawModel
+class Model
 {
 public:
-	RawModel(GLuint vaoID) : vaoID(vaoID)
-	{
-	}
-	~RawModel();
+	Model(GLuint vaoID) : vaoID(vaoID) {}
+	~Model();
 
 	std::vector<GLuint> vbosAndEbos;
 
@@ -19,10 +18,7 @@ public:
 	void rotate(GLfloat angle);
 	void move(GLfloat dx, GLfloat dy, GLfloat dz);
 
-	size_t getIndicesSize() const
-	{
-		return indices.size();
-	}
+	size_t getIndicesSize() const { return indices.size(); }
 
 	friend class Renderer;
 	friend class ModelBuilder;
@@ -30,9 +26,12 @@ public:
 private:
 	GLuint vaoID;
 	Coordinates coordinates;
+	Texture texture;
+	glm::vec3 color;
 
 	std::vector<GLfloat> vertices;
 	std::vector<GLfloat> vertexColors;
+	std::vector<GLfloat> textureCoords;
 	std::vector<GLuint> indices;
 };
 

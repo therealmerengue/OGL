@@ -1,6 +1,6 @@
-#include "RawModel.h"
+#include "Model.h"
 
-RawModel::~RawModel()
+Model::~Model()
 {
 	glDeleteVertexArrays(1, &vaoID);
 
@@ -8,17 +8,17 @@ RawModel::~RawModel()
 		glDeleteBuffers(1, &vbosAndEbos[i]);
 }
 
-GLuint RawModel::getVaoID() const
+GLuint Model::getVaoID() const
 {
 	return vaoID;
 }
 
-void RawModel::rotate(GLfloat angle)
+void Model::rotate(GLfloat angle)
 {
 	coordinates.rotationAngle += angle;
 }
 
-void RawModel::move(GLfloat dx, GLfloat dy, GLfloat dz)
+void Model::move(GLfloat dx, GLfloat dy, GLfloat dz)
 {
 	coordinates.position += glm::vec3(dx, dy, dz);
 }
