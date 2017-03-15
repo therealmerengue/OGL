@@ -6,9 +6,8 @@ struct Coordinates
 {
 	glm::vec3 position;
 	glm::vec3 size;
-	glm::vec3 rotationAxis;
-	GLfloat rotationAngle;
+	glm::vec3 rotationAngles;
 	Coordinates() {}
-	Coordinates(glm::vec3 position, glm::vec3 size, glm::vec3 rotationAxis, GLfloat rotationAngle);
+	Coordinates(glm::vec3 position, glm::vec3 size, glm::vec3 rotationAngles);
 }; 
 

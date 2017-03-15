@@ -13,9 +13,29 @@ GLuint Model::getVaoID() const
 	return vaoID;
 }
 
-void Model::rotate(GLfloat angle)
+void Model::rotate(RotationAxis axis, GLfloat angle)
 {
-	coordinates.rotationAngle += angle;
+	switch (axis)
+	{
+	case RotationAxis::x:
+		coordinates.rotationAngles.x += angle;
+		break;
+	case RotationAxis::y:
+		coordinates.rotationAngles.y += angle;
+		break;
+	case RotationAxis::z:
+		coordinates.rotationAngles.z += angle;
+		break;
+	default:
+		break;
+	}
+}
+
+void Model::rotate(GLfloat rx, GLfloat ry, GLfloat rz)
+{
+	coordinates.rotationAngles.x += rx;
+	coordinates.rotationAngles.y += ry;
+	coordinates.rotationAngles.z += rz;
 }
 
 void Model::move(GLfloat dx, GLfloat dy, GLfloat dz)

@@ -6,6 +6,11 @@
 #include <glm\glm.hpp>
 #include <vector>
 
+enum class RotationAxis 
+{
+	x, y, z
+};
+
 class Model
 {
 public:
@@ -15,7 +20,8 @@ public:
 	std::vector<GLuint> vbosAndEbos;
 
 	GLuint getVaoID() const;
-	void rotate(GLfloat angle);
+	void rotate(RotationAxis axis, GLfloat angle);
+	void rotate(GLfloat rx, GLfloat ry, GLfloat rz);
 	void move(GLfloat dx, GLfloat dy, GLfloat dz);
 
 	size_t getIndicesSize() const { return indices.size(); }

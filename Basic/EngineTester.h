@@ -3,6 +3,7 @@
 #include "Renderer.h"
 #include "ModelBuilder.h"
 #include "Model.h"
+#include "Camera.h"
 
 #include <GL\glew.h>
 #include <GLFW\glfw3.h>
@@ -30,6 +31,7 @@ private:
 	std::unique_ptr<Model> model3D;
 	std::unique_ptr<Model> model2D;
 	std::unique_ptr<Model> texModel;
+	Camera camera;
 
 	std::vector<GLfloat> vertices2D = {
 		0.5f,  0.5f, 0.0f, 
@@ -127,7 +129,5 @@ private:
 	};
 
 	void initWindow();
-	static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode);
-	static std::array<GLboolean, 512> keyStates;
 };
 

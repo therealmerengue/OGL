@@ -1,0 +1,46 @@
+﻿  Renderer.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
+  EngineTester.cpp
+ModelFactory.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+ModelFactory.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+Renderer.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+ModelFactory.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+ModelFactory.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+Renderer.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+Renderer.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewDeleteShader
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+ShaderManager.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+EngineTester.obj : error LNK2019: unresolved external symbol __imp_glewInit referenced in function "private: void __cdecl EngineTester::initWindow(void)" (?initWindow@EngineTester@@AEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "private: void __cdecl EngineTester::initWindow(void)" (?initWindow@EngineTester@@AEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "public: __cdecl EngineTester::~EngineTester(void)" (??1EngineTester@@QEAA@XZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "private: void __cdecl EngineTester::initWindow(void)" (?initWindow@EngineTester@@AEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "private: void __cdecl EngineTester::initWindow(void)" (?initWindow@EngineTester@@AEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function "public: void __cdecl EngineTester::gameLoop(void)" (?gameLoop@EngineTester@@QEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwSetWindowShouldClose referenced in function "private: static void __cdecl EngineTester::keyCallback(struct GLFWwindow *,int,int,int,int)" (?keyCallback@EngineTester@@CAXPEAUGLFWwindow@@HHHH@Z)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "public: void __cdecl EngineTester::gameLoop(void)" (?gameLoop@EngineTester@@QEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "private: void __cdecl EngineTester::initWindow(void)" (?initWindow@EngineTester@@AEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "private: void __cdecl EngineTester::initWindow(void)" (?initWindow@EngineTester@@AEAAXXZ)
+EngineTester.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "public: void __cdecl EngineTester::gameLoop(void)" (?gameLoop@EngineTester@@QEAAXXZ)
+EngineTester.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+EngineTester.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+EngineTester.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+EngineTester.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+EngineTester.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+EngineTester.obj : error LNK2001: unresolved external symbol __imp_glewExperimental
+E:\OGL\Projects\ItsAPrank\lib\glfw3.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+E:\OGL\Projects\ItsAPrank\lib\glew32.lib : warning LNK4272: library machine type 'X86' conflicts with target machine type 'x64'
+E:\OGL\Projects\ItsAPrank\x64\Debug\Basic.exe : fatal error LNK1120: 35 unresolved externals

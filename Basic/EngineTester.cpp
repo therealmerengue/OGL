@@ -1,4 +1,5 @@
 ﻿#include "EngineTester.h"
+#include "KeyboardManager.h"
 
 #include <iostream>
 
@@ -6,27 +7,27 @@ EngineTester::EngineTester()
 {
 	initWindow();
 	model3D = modelBuilder.InitBuild()
-		->Coords(Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f))
+		->Coords(Coordinates(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 45.0f, 60.0f)))
 		->Vertices(vertices3D)
 		->VertexColors(colors3D)
 		->Indices(indices3D)
 		->Result();
 	model2D = modelBuilder.InitBuild()
-		->Coords(Coordinates(glm::vec3(1.0f, 1.2f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 20.0f))
+		->Coords(Coordinates(glm::vec3(1.0f, 1.2f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 30.0f, 45.0f)))
 		->Vertices(vertices2D)
 		->VertexColors(vertexColors2D)
 		->Indices(indices2D)
 		->Result();
 	texModel = modelBuilder.InitBuild()
-		->Coords(Coordinates(glm::vec3(0.5f, 0.5f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 1.0f, -1.0f), 0.0f))
+		->Coords(Coordinates(glm::vec3(0.5f, 0.5f, -5.0f), glm::vec3(1.0f, 1.0f, 2.0f), glm::vec3(0.0f, 0.0f, 0.0f)))
 		->Vertices(vertices2D)
 		->TextureCoords(textureCoords)
 		->Tex(Texture("textures/blue.png"))
 		->Color(glm::vec3(1.0f))
 		->Indices(indices2D)
 		->Result();
-	renderer = new Renderer("vertexShader.vs", "fragmentShader.frag");
-	texRenderer = new Renderer("texVertexShader.vs", "texFragmentShader.frag");
+	renderer = new Renderer("vertexShader.vs", "fragmentShader.frag", &camera);
+	texRenderer = new Renderer("texVertexShader.vs", "texFragmentShader.frag", &camera);
 }
 
 EngineTester::~EngineTester()
@@ -54,7 +55,7 @@ void EngineTester::initWindow()
 	}
 
 	glfwMakeContextCurrent(window);
-	glfwSetKeyCallback(window, keyCallback);
+	glfwSetKeyCallback(window, KeyboardManager::getInstance().keyCallback);
 
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
@@ -80,20 +81,9 @@ void EngineTester::gameLoop()
 		renderer->render(*model3D);
 		renderer->render(*model2D);
 		texRenderer->renderTexture(*texModel);
-		model3D->rotate(0.002f);
+		model3D->rotate(RotationAxis::x, 0.002f);
+		camera.move();
 		//model->move(0.0f, 0.0f, -0.01f);
 		glfwSwapBuffers(window);
 	}
 }
-
-void EngineTester::keyCallback(GLFWwindow* window, int key, int scancode, int action, int mode)
-{
-	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, GL_TRUE);
-	else if (action == GLFW_PRESS)
-		keyStates[key] = GL_TRUE;
-	else if (action == GLFW_RELEASE)
-		keyStates[key] = GL_FALSE;
-}
-
-std::array<GLboolean, 512> EngineTester::keyStates = { GL_FALSE };
