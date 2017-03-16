@@ -31,6 +31,7 @@ private:
 	std::unique_ptr<Model> model3D;
 	std::unique_ptr<Model> model2D;
 	std::unique_ptr<Model> texModel;
+	std::unique_ptr<Model> objModel;
 	Camera camera;
 
 	std::vector<GLfloat> vertices2D = {

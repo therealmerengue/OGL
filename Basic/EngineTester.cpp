@@ -1,5 +1,6 @@
 ﻿#include "EngineTester.h"
 #include "KeyboardManager.h"
+#include "OBJModelBuilder.h"
 
 #include <iostream>
 
@@ -26,6 +27,10 @@ EngineTester::EngineTester()
 		->Color(glm::vec3(1.0f))
 		->Indices(indices2D)
 		->Result();
+	OBJModelBuilder omb;
+	objModel = omb.loadObjModel("models/stall.obj")
+		->Result(Coordinates(glm::vec3(0.0f, 0.0f, -50.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f)), 
+		"textures/stallTexture.png");
 	renderer = new Renderer("vertexShader.vs", "fragmentShader.frag", &camera);
 	texRenderer = new Renderer("texVertexShader.vs", "texFragmentShader.frag", &camera);
 }
@@ -80,8 +85,10 @@ void EngineTester::gameLoop()
 		renderer->clearScreen();
 		renderer->render(*model3D);
 		renderer->render(*model2D);
+		renderer->renderTexture(*objModel);
 		texRenderer->renderTexture(*texModel);
 		model3D->rotate(RotationAxis::x, 0.002f);
+		objModel->rotate(RotationAxis::y, 0.002f);
 		camera.move();
 		//model->move(0.0f, 0.0f, -0.01f);
 		glfwSwapBuffers(window);
