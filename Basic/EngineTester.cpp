@@ -1,5 +1,5 @@
 ﻿#include "EngineTester.h"
-#include "KeyboardManager.h"
+#include "InputManager.h"
 #include "OBJModelBuilder.h"
 
 #include <iostream>
@@ -60,7 +60,10 @@ void EngineTester::initWindow()
 	}
 
 	glfwMakeContextCurrent(window);
-	glfwSetKeyCallback(window, KeyboardManager::getInstance().keyCallback);
+	glfwSetKeyCallback(window, InputManager::keyCallback);
+	glfwSetCursorPosCallback(window, InputManager::mouseCallback);
+
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)

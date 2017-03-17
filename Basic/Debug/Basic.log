@@ -1,9 +1,16 @@
-﻿  EngineTester.cpp
-  OBJModelBuilder.cpp
+﻿  InputManager.cpp
+e:\ogl\projects\basic\inputmanager.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\ogl\projects\basic\inputmanager.cpp(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\ogl\projects\basic\inputmanager.cpp(27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\ogl\projects\basic\inputmanager.cpp(28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\ogl\projects\basic\inputmanager.cpp(29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\ogl\projects\basic\inputmanager.cpp(30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   Generating Code...
-SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'E:\OGL\Projects\ItsAPrank\Debug\SOIL.pdb'; linking object as if no debug info
-SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'E:\OGL\Projects\ItsAPrank\Debug\SOIL.pdb'; linking object as if no debug info
-SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'E:\OGL\Projects\ItsAPrank\Debug\SOIL.pdb'; linking object as if no debug info
-SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'E:\OGL\Projects\ItsAPrank\Debug\SOIL.pdb'; linking object as if no debug info
+  Compiling...
+  EngineTester.cpp
+e:\ogl\projects\basic\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  Camera.cpp
+e:\ogl\projects\basic\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
+  Generating Code...
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.exe
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.pdb (Partial PDB)

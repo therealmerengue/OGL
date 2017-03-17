@@ -7,6 +7,7 @@ class Camera
 private:
 	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
 	GLfloat pitch = 0.0f, yaw = 0.0f, roll = 0.0f;
+	GLfloat sensitivity = 0.001;
 
 public:
 	Camera() {}

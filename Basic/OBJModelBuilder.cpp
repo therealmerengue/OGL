@@ -1,5 +1,4 @@
 #include "OBJModelBuilder.h"
-#include "ModelBuilder.h"
 #include "Coordinates.h"
 #include "Texture.h"
 
@@ -84,7 +83,6 @@ OBJModelBuilder* OBJModelBuilder::loadObjModel(const std::string& modelPath)
 
 std::unique_ptr<Model> OBJModelBuilder::Result(const Coordinates& coordinates, const std::string& texturePath)
 {
-	ModelBuilder builder;
 	return builder.InitBuild()
 		->Coords(coordinates)
 		->Vertices(alignedVertices)

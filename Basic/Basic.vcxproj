@@ -132,7 +132,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coordinates.cpp" />
-    <ClCompile Include="KeyboardManager.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModelBuilder.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -145,7 +145,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coordinates.h" />
-    <ClInclude Include="KeyboardManager.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="ModelBuilder.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="OBJModelBuilder.h" />
