@@ -25,6 +25,6 @@ public:
 	~OBJModelBuilder() {}
 	
 	OBJModelBuilder* loadObjModel(const std::string& modelPath);
-	std::unique_ptr<Model> Result(const Coordinates& coordinates, const std::string& texturePath);
+	std::unique_ptr<Model> Result(const Coordinates& coordinates, const Texture& texture);
 };
 

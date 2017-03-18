@@ -50,20 +50,26 @@ OBJModelBuilder* OBJModelBuilder::loadObjModel(const std::string& modelPath)
 			normals.push_back(glm::vec3(std::stof(currentLine[1]), std::stof(currentLine[2]), std::stof(currentLine[3])));
 		else if (line[0] == 'f')
 		{
-			if (firstF)
-			{
-				alignedTextureCoords.resize(vertices.size() * 2);
-				alignedNormals.resize(vertices.size() * 3);
-				firstF = false;
-			}
-			auto vertex1 = split(currentLine[1], '/');
-			auto vertex2 = split(currentLine[2], '/');
-			auto vertex3 = split(currentLine[3], '/');
-
-			alignTexturesAndNormals(vertex1, textureCoords, normals);
-			alignTexturesAndNormals(vertex2, textureCoords, normals);
-			alignTexturesAndNormals(vertex3, textureCoords, normals);
+			alignedTextureCoords.resize(vertices.size() * 2);
+			alignedNormals.resize(vertices.size() * 3);
+			break;
 		}
+	}
+
+	while (std::getline(modelFile, line))
+	{
+		if (line[0] != 'f')
+			continue;
+
+		auto currentLine = split(line, ' ');
+
+		auto vertex1 = split(currentLine[1], '/');
+		auto vertex2 = split(currentLine[2], '/');
+		auto vertex3 = split(currentLine[3], '/');
+
+		alignTexturesAndNormals(vertex1, textureCoords, normals);
+		alignTexturesAndNormals(vertex2, textureCoords, normals);
+		alignTexturesAndNormals(vertex3, textureCoords, normals);
 	}
 
 	alignedVertices.resize(vertices.size() * 3);
@@ -80,7 +86,7 @@ OBJModelBuilder* OBJModelBuilder::loadObjModel(const std::string& modelPath)
 	return this;
 }
 
-std::unique_ptr<Model> OBJModelBuilder::Result(const Coordinates& coordinates, const std::string& texturePath)
+std::unique_ptr<Model> OBJModelBuilder::Result(const Coordinates& coordinates, const Texture& texture)
 {
 	auto model = builder.InitBuild()
 		->Coords(coordinates)
@@ -88,7 +94,7 @@ std::unique_ptr<Model> OBJModelBuilder::Result(const Coordinates& coordinates, c
 		->TextureCoords(alignedTextureCoords)
 		->Color(glm::vec3(1.0f))
 		->Normals(alignedNormals)
-		->Tex(Texture(texturePath.c_str()))
+		->Tex(texture)
 		->Indices(indices)
 		->Result();
 

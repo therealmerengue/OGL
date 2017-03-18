@@ -7,23 +7,26 @@ class Texture
 private:
 	GLuint ID;
 	GLuint width, height;
-	GLuint imageFormat;
-	GLuint internalFormat;
-	GLuint wrapS, wrapT;
-	GLuint filterMin, filterMax;
+	GLuint imageFormat = GL_RGBA;
+	GLuint internalFormat = GL_RGBA;
+	GLuint wrapS = GL_REPEAT, wrapT = GL_REPEAT;
+	GLuint filterMin = GL_LINEAR, filterMax = GL_LINEAR;
+
+	GLfloat shineDumper = 1;
+	GLfloat reflectivity = 0;
 
 	void generateTexture(GLuint width, GLuint height, unsigned char* data);
 
 public:
-	Texture(const GLchar* texturePath, GLuint internalFormat = GL_RGBA, GLuint imageFormat = GL_RGBA, 
-			GLuint wrapS = GL_REPEAT, GLuint wrapT = GL_REPEAT, GLuint filterMin = GL_LINEAR, GLuint filterMax = GL_LINEAR);
-	Texture(unsigned char* textureData, GLuint textureWidth, GLuint textureHeight, GLuint internalFormat = GL_RED, GLuint imageFormat = GL_RED,
-			GLuint wrapS = GL_CLAMP_TO_EDGE, GLuint wrapT = GL_CLAMP_TO_EDGE, GLuint filterMin = GL_LINEAR, GLuint filterMax = GL_LINEAR);
+	Texture(const GLchar* texturePath, GLfloat shineDumper = 1, GLfloat reflectivity = 0);
 	Texture() {}
-	~Texture();
+	~Texture() {}
 
 	void bindTexture() const;
 
 	GLuint getID() { return this->ID; }
+
+	GLfloat getShineDumper() const { return shineDumper; }
+	GLfloat getReflectivity() const { return reflectivity; }
 };
 
