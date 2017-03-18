@@ -1,5 +1,5 @@
 #pragma once
-#include "ShaderManager.h"
+#include "BasicShaderManager.h"
 #include "Renderer.h"
 #include "ModelBuilder.h"
 #include "Model.h"
@@ -27,11 +27,13 @@ private:
 	GLFWwindow* window;
 	Renderer* renderer;
 	Renderer* texRenderer;
+	Renderer* lightRenderer;
 	ModelBuilder modelBuilder;
 	std::unique_ptr<Model> model3D;
 	std::unique_ptr<Model> model2D;
 	std::unique_ptr<Model> texModel;
 	std::unique_ptr<Model> objModel;
+	std::unique_ptr<Model> objDragonModel;
 	Camera camera;
 
 	std::vector<GLfloat> vertices2D = {

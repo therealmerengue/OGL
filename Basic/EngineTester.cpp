@@ -1,6 +1,9 @@
 ﻿#include "EngineTester.h"
 #include "InputManager.h"
 #include "OBJModelBuilder.h"
+#include "BasicShaderManager.h"
+#include "LightShaderManager.h"
+#include "Light.h"
 
 #include <iostream>
 
@@ -31,14 +34,20 @@ EngineTester::EngineTester()
 	objModel = omb.loadObjModel("models/stall.obj")
 		->Result(Coordinates(glm::vec3(0.0f, 0.0f, -50.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f)), 
 		"textures/stallTexture.png");
-	renderer = new Renderer("vertexShader.vs", "fragmentShader.frag", &camera);
-	texRenderer = new Renderer("texVertexShader.vs", "texFragmentShader.frag", &camera);
+	objDragonModel = omb.loadObjModel("models/dragon.obj")
+		->Result(Coordinates(glm::vec3(0.0f, 0.0f, -20.0f), glm::vec3(1.0f, 1.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f)),
+			"textures/white.png");
+	renderer = new Renderer(BasicShaderManager("shaders/vertexShader.vs", "shaders/fragmentShader.frag"), &camera);
+	texRenderer = new Renderer(BasicShaderManager("shaders/texVertexShader.vs", "shaders/texFragmentShader.frag"), &camera);
+	Light l(glm::vec3(0.0f, 0.0f, -20.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	lightRenderer = new Renderer(LightShaderManager("shaders/lightVertexShader.vs", "shaders/lightFragmentShader.frag", &l), &camera);
 }
 
 EngineTester::~EngineTester()
 {
 	delete renderer;
 	delete texRenderer;
+	delete lightRenderer;
 	glfwTerminate();
 }
 
@@ -90,6 +99,7 @@ void EngineTester::gameLoop()
 		renderer->render(*model2D);
 		renderer->renderTexture(*objModel);
 		texRenderer->renderTexture(*texModel);
+		lightRenderer->renderTexture(*objDragonModel);
 		model3D->rotate(RotationAxis::x, 0.002f);
 		objModel->rotate(RotationAxis::y, 0.002f);
 		camera.move();

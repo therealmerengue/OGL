@@ -38,6 +38,7 @@ private:
 	std::vector<GLfloat> vertices;
 	std::vector<GLfloat> vertexColors;
 	std::vector<GLfloat> textureCoords;
+	std::vector<GLfloat> normals;
 	std::vector<GLuint> indices;
 };
 

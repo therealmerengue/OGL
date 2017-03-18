@@ -133,12 +133,14 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Coordinates.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="LightShaderManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ModelBuilder.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="OBJModelBuilder.cpp" />
     <ClCompile Include="Renderer.cpp" />
-    <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="BasicShaderManager.cpp" />
     <ClCompile Include="EngineTester.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
@@ -146,13 +148,23 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Coordinates.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="LightShaderManager.h" />
     <ClInclude Include="ModelBuilder.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="OBJModelBuilder.h" />
     <ClInclude Include="Renderer.h" />
-    <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="BasicShaderManager.h" />
     <ClInclude Include="EngineTester.h" />
     <ClInclude Include="Texture.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\fragmentShader.frag" />
+    <None Include="shaders\lightFragmentShader.frag" />
+    <None Include="shaders\lightVertexShader.vs" />
+    <None Include="shaders\texFragmentShader.frag" />
+    <None Include="shaders\texVertexShader.vs" />
+    <None Include="shaders\vertexShader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -27,6 +27,7 @@ public:
 	ModelBuilder* Coords(const Coordinates& coordinates);
 	ModelBuilder* TextureCoords(const std::vector<GLfloat>& texCoords);
 	ModelBuilder* Tex(const Texture& texture);
+	ModelBuilder* Normals(const std::vector<GLfloat>& normals);
 	ModelBuilder* InitBuild();
 	ModelBuilder* Color(const glm::vec3& color);
 	std::unique_ptr<Model> Result();

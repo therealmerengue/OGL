@@ -1,15 +1,16 @@
 #pragma once
-#include "ShaderManager.h"
+#include "BasicShaderManager.h"
 #include "Model.h"
 #include "Texture.h"
 #include "Camera.h"
+#include "Light.h"
 
 #include <GL\glew.h>
 
 class Renderer
 {
 private:
-	ShaderManager shaderManager;
+	BasicShaderManager shaderManager;
 	Camera* camera;
 
 	void draw(const Model& model);
@@ -18,7 +19,7 @@ private:
 	void setUpMatrices(const Model& model, const Camera& camera);
 
 public:
-	Renderer(std::string vertexShaderPath, std::string fragmentShaderPath, Camera* camera);
+	Renderer(const BasicShaderManager& shaderManager, Camera* camera);
 	~Renderer();
 
 	void clearScreen();

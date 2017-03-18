@@ -1,16 +1,7 @@
-﻿  InputManager.cpp
-e:\ogl\projects\basic\inputmanager.cpp(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\ogl\projects\basic\inputmanager.cpp(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\ogl\projects\basic\inputmanager.cpp(27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\ogl\projects\basic\inputmanager.cpp(28): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\ogl\projects\basic\inputmanager.cpp(29): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-e:\ogl\projects\basic\inputmanager.cpp(30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
-  Compiling...
+﻿  Renderer.cpp
   EngineTester.cpp
-e:\ogl\projects\basic\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
-  Camera.cpp
-e:\ogl\projects\basic\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'GLfloat'
   Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.exe
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.pdb (Partial PDB)

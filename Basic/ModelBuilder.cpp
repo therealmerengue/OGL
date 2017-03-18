@@ -53,6 +53,15 @@ ModelBuilder* ModelBuilder::Tex(const Texture& texture)
 	return this;
 }
 
+ModelBuilder* ModelBuilder::Normals(const std::vector<GLfloat>& normals)
+{
+	bindVAO(model->vaoID);
+	model->normals = normals;
+	storeDataInAttributeList(GL_ARRAY_BUFFER, 2, 3, GL_FLOAT, 3, 0, normals);
+	unbindVAO();
+	return this;
+}
+
 ModelBuilder* ModelBuilder::InitBuild()
 {
 	int vaoID = createAndBindVAO();
