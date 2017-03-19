@@ -1,8 +1,8 @@
 #include "ModelBuilder.h"
 
-std::unique_ptr<Model> ModelBuilder::Result()
+std::shared_ptr<Model> ModelBuilder::Result()
 {
-	return std::move(model);
+	return model;
 }
 
 ModelBuilder* ModelBuilder::Vertices(const std::vector<GLfloat>& vertices)
@@ -29,12 +29,6 @@ ModelBuilder* ModelBuilder::Indices(const std::vector<GLuint>& indices)
 	model->indices = indices;
 	storeVertexIndices(indices);
 	unbindVAO();
-	return this;
-}
-
-ModelBuilder* ModelBuilder::Coords(const Coordinates& coordinates)
-{
-	model->coordinates = coordinates;
 	return this;
 }
 
@@ -65,13 +59,7 @@ ModelBuilder* ModelBuilder::Normals(const std::vector<GLfloat>& normals)
 ModelBuilder* ModelBuilder::InitBuild()
 {
 	int vaoID = createAndBindVAO();
-	model = std::make_unique<Model>(vaoID);
-	return this;
-}
-
-ModelBuilder* ModelBuilder::Color(const glm::vec3& color)
-{
-	model->color = color;
+	model = std::make_shared<Model>(vaoID);
 	return this;
 }
 

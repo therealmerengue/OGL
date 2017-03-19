@@ -1,5 +1,4 @@
 #include "OBJModelBuilder.h"
-#include "Coordinates.h"
 #include "Texture.h"
 
 #include <fstream>
@@ -86,13 +85,11 @@ OBJModelBuilder* OBJModelBuilder::loadObjModel(const std::string& modelPath)
 	return this;
 }
 
-std::unique_ptr<Model> OBJModelBuilder::Result(const Coordinates& coordinates, const Texture& texture)
+std::shared_ptr<Model> OBJModelBuilder::Result(const Texture& texture)
 {
 	auto model = builder.InitBuild()
-		->Coords(coordinates)
 		->Vertices(alignedVertices)
 		->TextureCoords(alignedTextureCoords)
-		->Color(glm::vec3(1.0f))
 		->Normals(alignedNormals)
 		->Tex(texture)
 		->Indices(indices)

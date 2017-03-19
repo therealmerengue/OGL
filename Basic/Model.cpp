@@ -1,5 +1,7 @@
 #include "Model.h"
 
+#include <iostream>
+
 Model::~Model()
 {
 	glDeleteVertexArrays(1, &vaoID);
@@ -13,32 +15,12 @@ GLuint Model::getVaoID() const
 	return vaoID;
 }
 
-void Model::rotate(RotationAxis axis, GLfloat angle)
+void Model::bindTexture() const
 {
-	switch (axis)
-	{
-	case RotationAxis::x:
-		coordinates.rotationAngles.x += angle;
-		break;
-	case RotationAxis::y:
-		coordinates.rotationAngles.y += angle;
-		break;
-	case RotationAxis::z:
-		coordinates.rotationAngles.z += angle;
-		break;
-	default:
-		break;
-	}
+	texture.bindTexture();
 }
 
-void Model::rotate(GLfloat rx, GLfloat ry, GLfloat rz)
+bool operator==(const Model & m1, const Model & m2)
 {
-	coordinates.rotationAngles.x += rx;
-	coordinates.rotationAngles.y += ry;
-	coordinates.rotationAngles.z += rz;
-}
-
-void Model::move(GLfloat dx, GLfloat dy, GLfloat dz)
-{
-	coordinates.position += glm::vec3(dx, dy, dz);
+	return m1.getVaoID() == m2.getVaoID();
 }

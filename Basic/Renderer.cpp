@@ -1,24 +1,26 @@
 #include "Renderer.h"
-#include "Model.h"
 
-void Renderer::draw(const Model& model)
+void Renderer::draw(const Entity& entity)
 {
-	glBindVertexArray(model.vaoID);
-	glDrawElements(GL_TRIANGLES, model.getIndicesSize(), GL_UNSIGNED_INT, 0);
+	glBindVertexArray(entity.getModelVaoID());
+	glDrawElements(GL_TRIANGLES, entity.getModelIndicesSize(), GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);
 }
 
-void Renderer::setUpModelMatrix(const Model& model)
+void Renderer::setUpModelMatrix(const Entity& entity)
 {
+	auto entityScale = entity.getScale();
+	auto entityRotations = entity.getRotations();
+
 	shaderManager.useProgram();
 	glm::mat4 modelMatrix;
-	modelMatrix = glm::translate(modelMatrix, model.coordinates.position);
-	modelMatrix = glm::translate(modelMatrix, glm::vec3(0.5f * model.coordinates.size.x, 0.5f * model.coordinates.size.y, 0.5f * model.coordinates.size.z));
-	modelMatrix = glm::rotate(modelMatrix, model.coordinates.rotationAngles.x, glm::vec3(1.0f, 0.0f, 0.0f));
-	modelMatrix = glm::rotate(modelMatrix, model.coordinates.rotationAngles.y, glm::vec3(0.0f, 1.0f, 0.0f));
-	modelMatrix = glm::rotate(modelMatrix, model.coordinates.rotationAngles.z, glm::vec3(0.0f, 0.0f, 1.0f));
-	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f * model.coordinates.size.x, -0.5f * model.coordinates.size.y, -0.5f * model.coordinates.size.z));
-	modelMatrix = glm::scale(modelMatrix, model.coordinates.size);
+	modelMatrix = glm::translate(modelMatrix, entity.getPosition());
+	modelMatrix = glm::translate(modelMatrix, glm::vec3(0.5f * entityScale.x, 0.5f * entityScale.y, 0.5f * entityScale.z));
+	modelMatrix = glm::rotate(modelMatrix, entityRotations.x, glm::vec3(1.0f, 0.0f, 0.0f));
+	modelMatrix = glm::rotate(modelMatrix, entityRotations.y, glm::vec3(0.0f, 1.0f, 0.0f));
+	modelMatrix = glm::rotate(modelMatrix, entityRotations.z, glm::vec3(0.0f, 0.0f, 1.0f));
+	modelMatrix = glm::translate(modelMatrix, glm::vec3(-0.5f * entityScale.x, -0.5f * entityScale.y, -0.5f * entityScale.z));
+	modelMatrix = glm::scale(modelMatrix, entityScale);
 	glUniformMatrix4fv(shaderManager.getUniformLocation("modelMatrix"), 1, GL_FALSE, glm::value_ptr(modelMatrix));
 }
 
@@ -32,9 +34,9 @@ void Renderer::setUpViewMatrix(const Camera& camera)
 	glUniformMatrix4fv(shaderManager.getUniformLocation("viewMatrix"), 1, GL_FALSE, glm::value_ptr(viewMatrix));
 }
 
-void Renderer::setUpMatrices(const Model& model, const Camera& camera)
+void Renderer::setUpMatrices(const Entity& entity, const Camera& camera)
 {
-	setUpModelMatrix(model);
+	setUpModelMatrix(entity);
 	setUpViewMatrix(camera);
 }
 
@@ -53,21 +55,49 @@ void Renderer::clearScreen()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::render(const Model& model)
+void Renderer::render(const Entity& entity)
 {
-	setUpMatrices(model, *camera);
+	setUpMatrices(entity, *camera);
 
-	draw(model);
+	draw(entity);
 }
 
-void Renderer::renderTexture(const Model& model)
+void Renderer::renderTexture(const Entity& entity)
 {
-	setUpMatrices(model, *camera);
+	setUpMatrices(entity, *camera);
 
 	glActiveTexture(GL_TEXTURE0);
-	model.texture.bindTexture();
+	entity.bindModelTexture();
 	
-	glUniform3f(glGetUniformLocation(shaderManager.getProgramID(), "spriteColor"), model.color.x, model.color.y, model.color.z);
+	auto entityColor = entity.getColor();
+	glUniform3f(glGetUniformLocation(shaderManager.getProgramID(), "spriteColor"), entityColor.x, entityColor.y, entityColor.z);
 
-	draw(model);
+	draw(entity);
+	Texture::unbindTexture();
+}
+
+void Renderer::render(const std::map<Model*, std::vector<Entity>>& entities)
+{
+	for (auto it = entities.cbegin(); it != entities.cend(); ++it)
+	{
+		auto entities = it->second;
+		auto model = it->first;
+		bool textureBound = false;
+
+			glActiveTexture(GL_TEXTURE0);
+			model->bindTexture();
+			textureBound = true;
+		
+		for (size_t i = 0; i < entities.size(); i++)
+		{
+			setUpMatrices(entities[i], *camera);
+			auto entityColor = entities[i].getColor();
+			glUniform3f(glGetUniformLocation(shaderManager.getProgramID(), "spriteColor"), entityColor.x, entityColor.y, entityColor.z);
+			draw(entities[i]);
+		}
+		if (textureBound)
+		{
+			Texture::unbindTexture();
+		}
+	}
 }

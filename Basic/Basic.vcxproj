@@ -131,11 +131,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
-    <ClCompile Include="Coordinates.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="LightShaderManager.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MasterRenderer.cpp" />
     <ClCompile Include="ModelBuilder.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="OBJModelBuilder.cpp" />
@@ -146,10 +147,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
-    <ClInclude Include="Coordinates.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="LightShaderManager.h" />
+    <ClInclude Include="MasterRenderer.h" />
     <ClInclude Include="ModelBuilder.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="OBJModelBuilder.h" />

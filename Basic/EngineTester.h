@@ -25,15 +25,15 @@ private:
 	int height = 600;
 	const char* title = "GAME";
 	GLFWwindow* window;
-	Renderer* renderer;
-	Renderer* texRenderer;
-	Renderer* lightRenderer;
+	std::unique_ptr<Renderer> renderer;
+	std::unique_ptr<Renderer> texRenderer;
+	std::unique_ptr<Renderer> lightRenderer;
 	ModelBuilder modelBuilder;
-	std::unique_ptr<Model> model3D;
-	std::unique_ptr<Model> model2D;
-	std::unique_ptr<Model> texModel;
-	std::unique_ptr<Model> objModel;
-	std::unique_ptr<Model> objDragonModel;
+	std::unique_ptr<Entity> ent3D;
+	std::unique_ptr<Entity> ent2D;
+	std::unique_ptr<Entity> texEnt;
+	std::unique_ptr<Entity> objEnt;
+	std::unique_ptr<Entity> objDragonEnt;
 	Camera camera;
 
 	std::vector<GLfloat> vertices2D = {
