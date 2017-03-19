@@ -17,7 +17,7 @@ private:
 
 public:
 	Entity(std::shared_ptr<Model> model, glm::vec3 position, glm::vec3 scale = glm::vec3(1.0f),
-		glm::vec3 rotations = glm::vec3(0.0f), glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f));
+		glm::vec3 rotations = glm::vec3(0.0f), glm::vec3 color = glm::vec3(1.0f));
 	~Entity() {}
 
 	void rotate(GLfloat rx, GLfloat ry, GLfloat rz);

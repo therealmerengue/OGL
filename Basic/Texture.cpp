@@ -34,7 +34,12 @@ void Texture::generateTexture(GLuint width, GLuint height, unsigned char* data)
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-void Texture::bindTexture() const //to bind a texture in drawSprite in Renderer
+bool Texture::bindTexture() const //to bind a texture in drawSprite in Renderer
 {
-	glBindTexture(GL_TEXTURE_2D, ID);
+	if (width != 0 && height != 0)
+	{
+		glBindTexture(GL_TEXTURE_2D, ID);
+		return true;
+	}
+	return false;
 }

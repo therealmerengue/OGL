@@ -4,34 +4,20 @@
 #include "BasicShaderManager.h"
 #include "LightShaderManager.h"
 #include "Light.h"
+#include "BasicModelBuilder.h"
 
 #include <iostream>
+#include <random>
 
 EngineTester::EngineTester()
 {
 	initWindow();
-
-	auto model3D = modelBuilder.InitBuild()
-		->Vertices(vertices3D)
-		->VertexColors(colors3D)
-		->Indices(indices3D)
-		->Result();
-	ent3D = std::make_unique<Entity>(model3D, glm::vec3(0.0f, 0.0f, -5.0f));
-
-	auto model2D = modelBuilder.InitBuild()
-		->Vertices(vertices2D)
-		->VertexColors(vertexColors2D)
-		->Indices(indices2D)
-		->Result();
-	ent2D = std::make_unique<Entity>(model2D, glm::vec3(1.0f, 1.2f, -5.0f));
 	
-	auto texModel = modelBuilder.InitBuild()
-		->Vertices(vertices2D)
-		->TextureCoords(textureCoords)
-		->Tex(Texture("textures/blue.png"))
-		->Indices(indices2D)
-		->Result();
-	texEnt = std::make_unique<Entity>(texModel, glm::vec3(0.5f, 0.5f, -5.0f));
+	BasicModelBuilder sbTex(Dimensions::dim2D, Texture("textures/blue.png"));
+	BasicModelBuilder sb(Dimensions::dim2D);
+
+	texEnt = sbTex.Result(glm::vec3(0.0f, 0.0f, -10.0f));
+	ent2D = sb.Result(glm::vec3(0.0f, 0.0f, -15.0f));
 
 	OBJModelBuilder omb;
 
@@ -49,6 +35,15 @@ EngineTester::EngineTester()
 	Light l(glm::vec3(3000, 2000, 2000), glm::vec3(1.0f, 1.0f, 1.0f));
 	lightRenderer = std::make_unique<Renderer>(
 		LightShaderManager("shaders/lightVertexShader.vs", "shaders/lightFragmentShader.frag", &l, &tex), &camera);
+
+	masterRenderer = std::make_unique<MasterRenderer>(texRenderer.get());
+	BasicModelBuilder bmb3D(Dimensions::dim3D, tex);
+	for (size_t i = 0; i < 200; i++)
+	{
+		auto position = glm::vec3(genRandomNumber(-50, 50), genRandomNumber(-50, 50), genRandomNumber(-100, 0));
+		auto cubeEntity = bmb3D.Result(position);
+		masterRenderer->addEntity(*cubeEntity.get());
+	}
 }
 
 EngineTester::~EngineTester()
@@ -95,18 +90,35 @@ void EngineTester::initWindow()
 	glCullFace(GL_BACK);
 }
 
+int EngineTester::genRandomNumber(int begin, int end)
+{
+	std::random_device rd; // obtain a random number from hardware
+	std::mt19937 eng(rd()); // seed the generator
+	std::uniform_int_distribution<> distr(begin, end); // define the range
+	return distr(eng);
+}
+
+void EngineTester::printFPS()
+{
+	float currentFrameTime = glfwGetTime();
+	deltaTime = currentFrameTime - lastFrameTime;
+	lastFrameTime = currentFrameTime;
+	std::cout << 1 / deltaTime << '\n';
+}
+
 void EngineTester::gameLoop()
 {
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
+		printFPS();
+
 		renderer->clearScreen();
-		renderer->render(*ent3D);
 		renderer->render(*ent2D);
 		lightRenderer->renderTexture(*objDragonEnt);
 		renderer->renderTexture(*objEnt);
 		texRenderer->renderTexture(*texEnt);
-		ent3D->rotate(0.0f, 0.002f, 0.0f);
+		masterRenderer->render();
 		objDragonEnt->rotate(0.0f, 0.002f, 0.0f);
 		camera.move();
 		glfwSwapBuffers(window);

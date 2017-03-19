@@ -15,9 +15,9 @@ GLuint Model::getVaoID() const
 	return vaoID;
 }
 
-void Model::bindTexture() const
+bool Model::bindTexture() const
 {
-	texture.bindTexture();
+	return texture.bindTexture();
 }
 
 bool operator==(const Model & m1, const Model & m2)

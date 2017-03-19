@@ -4,7 +4,7 @@
 #include <map>
 #include <vector>
 
-class MasterRenderer
+class MasterRenderer //for rendering multiple entities with the same model
 {
 private:
 	Renderer* renderer;

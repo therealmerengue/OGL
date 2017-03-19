@@ -22,7 +22,7 @@ public:
 	Texture() {}
 	~Texture() {}
 
-	void bindTexture() const;
+	bool bindTexture() const;
 	static void unbindTexture() { glBindTexture(GL_TEXTURE_2D, 0); }
 
 	GLuint getID() { return this->ID; }

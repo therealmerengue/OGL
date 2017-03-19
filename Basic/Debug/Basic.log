@@ -1,3 +1,7 @@
-﻿  Renderer.cpp
+﻿  EngineTester.cpp
+e:\ogl\projects\basic\enginetester.cpp(103): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  Main.cpp
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.exe
   Basic.vcxproj -> E:\OGL\Projects\ItsAPrank\Debug\Basic.pdb (Partial PDB)

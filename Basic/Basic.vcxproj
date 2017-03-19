@@ -143,6 +143,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="BasicShaderManager.cpp" />
     <ClCompile Include="EngineTester.cpp" />
+    <ClCompile Include="BasicModelBuilder.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -158,6 +159,7 @@
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="BasicShaderManager.h" />
     <ClInclude Include="EngineTester.h" />
+    <ClInclude Include="BasicModelBuilder.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>

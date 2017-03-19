@@ -14,7 +14,7 @@ public:
 	std::vector<GLuint> vbosAndEbos;
 
 	GLuint getVaoID() const;
-	void bindTexture() const;
+	bool bindTexture() const;
 	
 	size_t getIndicesSize() const { return indices.size(); }
 

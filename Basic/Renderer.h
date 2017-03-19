@@ -23,7 +23,7 @@ private:
 
 public:
 	Renderer(const BasicShaderManager& shaderManager, Camera* camera);
-	~Renderer();
+	~Renderer() {}
 
 	void clearScreen();
 

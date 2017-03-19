@@ -45,10 +45,6 @@ Renderer::Renderer(const BasicShaderManager& shaderManager, Camera* camera) :
 {
 }
 
-Renderer::~Renderer()
-{
-}
-
 void Renderer::clearScreen()
 {
 	glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -82,11 +78,9 @@ void Renderer::render(const std::map<Model*, std::vector<Entity>>& entities)
 	{
 		auto entities = it->second;
 		auto model = it->first;
-		bool textureBound = false;
 
-			glActiveTexture(GL_TEXTURE0);
-			model->bindTexture();
-			textureBound = true;
+		glActiveTexture(GL_TEXTURE0);
+		bool textureBound = model->bindTexture();
 		
 		for (size_t i = 0; i < entities.size(); i++)
 		{
@@ -96,8 +90,6 @@ void Renderer::render(const std::map<Model*, std::vector<Entity>>& entities)
 			draw(entities[i]);
 		}
 		if (textureBound)
-		{
 			Texture::unbindTexture();
-		}
 	}
 }
